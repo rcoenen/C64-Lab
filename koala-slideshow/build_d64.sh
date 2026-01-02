@@ -4,6 +4,8 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Update these paths to match your local setup
 KICKASS=~/c64/kickassembler/KickAss.jar
 SPARKLE=/usr/local/bin/sparkle
 
