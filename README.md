@@ -8,12 +8,6 @@ The goal is to show that you can build real C64 productions on modern computers 
 
 ## Repository Structure
 
-### Tools
-Developer utilities for the C64 toolchain.
-
-#### [kla2png](tools/kla2png/)
-Python tool to convert Koala Paint (.kla) images to PNG format. Useful for previewing C64 multicolor bitmap images on modern systems.
-
 ### Demos
 C64 demo productions and examples.
 
@@ -22,6 +16,12 @@ A complete C64 demo disk featuring smooth color fade effects and the [Sparkle 3]
 
 #### [rasterbar](demos/rasterbar/)
 Pixel-perfect stable raster bar demo using the classic "Double IRQ + Double Compare" technique. A great reference for learning cycle-exact C64 programming.
+
+### Tools
+Developer utilities for the C64 toolchain.
+
+#### [kla2png](tools/kla2png/)
+Python tool to convert Koala Paint (.kla) images to PNG format. Useful for previewing C64 multicolor bitmap images on modern systems.
 
 ## Requirements
 
