@@ -8,27 +8,15 @@ The goal is to show that you can build real C64 productions on modern computers 
 
 ## Repository Structure
 
-### Demos
-C64 demo productions and examples.
+### [Demos](demos/)
+C64 demo productions showcasing classic effects: color fading, stable rasters, trackloading, and more. Each includes complete source code and build scripts.
 
-#### [koala-slideshow](demos/koala-slideshow/)
-A complete C64 demo disk featuring smooth color fade effects and the [Sparkle 3](https://github.com/spartaomg/SparkleCPP) trackloader. Displays Koala format images with perceptually correct color fading based on [Colfade Doc v2](https://csdb.dk/release/?id=132276) by Veto.
+### [Tools](tools/)
+Cross-development utilities for C64 production, including image format converters and build tooling.
 
-#### [rasterbar](demos/rasterbar/)
-Pixel-perfect stable raster bar demo using the classic "Double IRQ + Double Compare" technique. A great reference for learning cycle-exact C64 programming.
+## Quick Start
 
-### Tools
-Developer utilities for the C64 toolchain.
-
-#### [kla2png](tools/kla2png/)
-Python tool to convert Koala Paint (.kla) images to PNG format. Useful for previewing C64 multicolor bitmap images on modern systems.
-
-## Requirements
-
-- **macOS** (tested on macOS 14+)
-- **[VICE](https://vice-emu.sourceforge.io/)** - C64 emulator for testing
-
-See individual project READMEs for specific tool requirements.
+Requires macOS and [VICE](https://vice-emu.sourceforge.io/) emulator. See individual project READMEs for build instructions and specific requirements.
 
 ## Philosophy
 
