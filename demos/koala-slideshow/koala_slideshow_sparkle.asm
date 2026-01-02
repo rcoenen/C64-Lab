@@ -1,10 +1,14 @@
 //============================================================================
-// Koala Slideshow with Sparkle 2 Trackloader
+// Koala Slideshow with Sparkle 3 Trackloader
 //============================================================================
 // Displays Koala format images from D64 with smooth color fade effects.
-// Uses Sparkle 2 trackloader for fast compressed loading.
+// Uses Sparkle 3 trackloader with prefetch for fast compressed loading.
 //
-// Flow: fade_in -> display -> wait -> fade_out -> load next -> repeat
+// Flow: load -> fade_in -> prefetch_next -> wait -> fade_out -> repeat
+//
+// Prefetch optimization: While displaying image N, the next image (N+1) is
+// prefetched in the background using Sparkle_SendCmd. When transitioning,
+// Sparkle_LoadFetched loads the already-prefetched bundle for fast display.
 //
 // CRITICAL: Code must compile to <= 87 compressed blocks or Sparkle hangs!
 // Monitor with: ./build_d64.sh 2>&1 | grep "Compressed"
@@ -89,13 +93,13 @@ start:
 //============================================================================
 show_image:
     //------------------------------------------------------------------------
-    // Load image from disk
-    // Bundle 0 = this code, images are bundles 1, 2, 3...
+    // Load image from disk (first uses LoadA, then SMC switches to LoadFetched)
     //------------------------------------------------------------------------
     lda current_image
     clc
-    adc #1                      // Bundle index = current_image + 1
-    jsr Sparkle_LoadA           // Load bundle A to its target address ($8000)
+    adc #1                      // Bundle index (for LoadA on first load)
+smc_load:
+    jsr Sparkle_LoadA           // SMC: patched to LoadFetched after 1st
 
     //------------------------------------------------------------------------
     // Copy loaded image data from $8000 to display buffers
@@ -114,7 +118,24 @@ show_image:
     jsr fade_in
 
     //------------------------------------------------------------------------
-    // Wait for user input or timeout
+    // Prefetch NEXT bundle and patch to use LoadFetched for future loads
+    //------------------------------------------------------------------------
+    ldx current_image
+    inx
+    cpx #NUM_IMAGES
+    bcc !+
+    ldx #0                      // Wrap to first image
+!:  inx                         // Bundle index = image + 1
+    txa
+    jsr Sparkle_SendCmd         // Prefetch next bundle (non-blocking)
+
+    lda #<Sparkle_LoadFetched   // Patch loader call for subsequent loads
+    sta smc_load+1
+    lda #>Sparkle_LoadFetched
+    sta smc_load+2
+
+    //------------------------------------------------------------------------
+    // Wait for user input or timeout (next bundle prefetches in background)
     //------------------------------------------------------------------------
     jsr wait_with_timeout
 
