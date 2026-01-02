@@ -6,15 +6,21 @@ A collection of reference projects demonstrating how to create C64 software usin
 
 The goal is to show that you can build real C64 productions on modern computers without deep 6502 expertise.
 
-## Projects
+## Repository Structure
 
-### [kla2png](kla2png/)
+### Tools
+Developer utilities for the C64 toolchain.
+
+#### [kla2png](tools/kla2png/)
 Python tool to convert Koala Paint (.kla) images to PNG format. Useful for previewing C64 multicolor bitmap images on modern systems.
 
-### [koala-slideshow](koala-slideshow/)
+### Demos
+C64 demo productions and examples.
+
+#### [koala-slideshow](demos/koala-slideshow/)
 A complete C64 demo disk featuring smooth color fade effects and the [Sparkle 3](https://github.com/spartaomg/SparkleCPP) trackloader. Displays Koala format images with perceptually correct color fading based on [Colfade Doc v2](https://csdb.dk/release/?id=132276) by Veto.
 
-### [rasterbar](rasterbar/)
+#### [rasterbar](demos/rasterbar/)
 Pixel-perfect stable raster bar demo using the classic "Double IRQ + Double Compare" technique. A great reference for learning cycle-exact C64 programming.
 
 ## Requirements
