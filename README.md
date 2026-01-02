@@ -14,6 +14,9 @@ Python tool to convert Koala Paint (.kla) images to PNG format. Useful for previ
 ### [koala-slideshow](koala-slideshow/)
 A complete C64 demo disk featuring smooth color fade effects and the [Sparkle 3](https://github.com/spartaomg/SparkleCPP) trackloader. Displays Koala format images with perceptually correct color fading based on [Colfade Doc v2](https://csdb.dk/release/?id=132276) by Veto.
 
+### [rasterbar](rasterbar/)
+Pixel-perfect stable raster bar demo using the classic "Double IRQ + Double Compare" technique. A great reference for learning cycle-exact C64 programming.
+
 ## Requirements
 
 - **macOS** (tested on macOS 14+)
