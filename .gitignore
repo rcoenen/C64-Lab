@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Build artifacts
+*.sym
+build/
+
+# Backup files
+*_original.*
+*.bak
+
+# Internal tooling
+.claude/
+.gemini/
+.opencode/
+openspec/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

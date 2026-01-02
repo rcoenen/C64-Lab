@@ -1,0 +1,15 @@
+# Build artifacts (symbol files)
+*.sym
+
+# macOS
+.DS_Store
+
+# Build directory
+build/
+
+# Backup files
+*_original.*
+*.bak
+
+# Internal tooling
+openspec/
